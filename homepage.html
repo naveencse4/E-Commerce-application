@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <title>onlinebazaar register</title>
+        <style>
+            span{
+                color:red;
+            }
+            a{
+                border: 1px solid black;
+                padding: 5px;
+                background-color:rgb(240,225,4);
+                color: black;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 style="text-align: center;background-color: rgb(140,240,0);color: rgb(255,0,0);">Online Bazaar</h1>
+        <form>
+          Username<span>*</span><br>
+          <input type="text" id="username" name="username" required><br><br>
+          EmailId<span>*</span><br>
+          <input type="email" id="email" name="emailid" required><br><br>
+          Password<span>*</span><br>
+          <input type="password" id="password" name="password" required><br><br>
+          Confirm Password<span>*</span><br>
+          <input type="password" id="confirm" name="confirm password" required><br><br>
+          Phone Number<span>*</span> <br>
+          <input type="tel" id="phno" name="phno" required><br><br>  
+          Date of Birth<span>*</span><br>
+          <input type="date" id="DOB" name="DOB" required><br><br>
+          <input type="submit" id="submit" onclick=storeuser() value="submit"><br><br>
+          <p>Already registered ? <a href="signin.html" target="_blank">SignIn</a></p><br>
+        </form>
+        <script>
+            function storeuser()
+            {
+              var username = document.getElementById("username").value;
+              var email = document.getElementById("email").value;
+              var password = document.getElementById("password").value;
+              var confirm = document.getElementById("confirm").value;
+              var phno = document.getElementById("phno").value;
+              var DOB = document.getElementById("DOB").value;
+              var userdata ={username:username, 
+              email:email, password:password, 
+              confirm:confirm, phno: phno, dob: DOB }
+              var entry = localStorage.getItem(email); 
+              if(entry==null){
+              localStorage.setItem(email, JSON.stringify(userdata));
+            }  
+            else
+            {
+                alert("you are already registered!");
+            }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <title>Reset</title>
+    </head>
+    <body>
+        <h1 style="text-align: center;background-color: rgb(140,240,0); color: rgb(255,0,0);">Online Bazaar</h1>
+        <form>
+            <label>Email:</label>
+            <input type="email" id="email" name="email">
+            <button type="button" onclick="authenticate()">Click Here</button>
+        </form>
+        <p id="err" style="color:red;"></p>
+        <form>
+                <label>Enter new password:</label>
+                <input type="password" id="npassword" name="npassword" disabled><br><br>
+                <label>Confirm password:</label>
+                <input type="password" id="cpassword" name="cpassword" disabled><br><br>
+                <button type="submit" onclick="storeUser()">submit</button>
+            </form>
+        <script>
+            function authenticate()
+            {
+              var email = document.getElementById("email").value;
+              var entry = localStorage.getItem(email);
+              if (entry==null)
+              {
+                 document.getElementById("err").innerHTML="This email is not registered with us or Enter correct email id!";
+              }
+              else{
+                  document.getElementById("err").innerHTML="Reset Password!";
+                  document.getElementById("err").style.color="blue";
+                  document.getElementById("npassword").disabled= false;
+                  document.getElementById("cpassword").disabled= false;
+              }
+            }
+        </script>
+        <script>
+            function storeUser()
+            {
+                var email = document.getElementById("email").value;
+                var password = document.getElementById("npassword").value;
+                var confirm = document.getElementById("cpassword").value;
+                var entry$=localStorage.getItem(email);
+                lc_data=JSON.parse(entry$);
+                var phno= lc_data.phno;
+                var DOB= lc_data.dob;
+                var username= lc_data.username;
+                userdata={
+                    username:username,
+                    email:email,
+                    password:password,
+                    confirm:confirm,
+                    phno: phno,
+                    dob: DOB
+                }
+                localStorage.setItem(email,JSON.stringify(userdata));
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,54 @@
+<html>
+    <head>
+       <title>SignIn Online Bazaar</title>
+       <style>
+           a{
+              border: 1px solid black;
+              padding: 5px;
+              background-color: rgb(240,225,4);
+              color: black; 
+           }
+       </style>
+    </head>
+    <body>
+        <h1 Style="text-align: center;background-color: rgb(140,240,0); color: rgb(255,0,0);">Online Bazaar</h1>
+        <form onsubmit="return authenticate()">
+            Username: <input type="text" id="username" name="username"><br><br>
+            Email: <input type="email" id="email" name="emailid"><br><br>
+            Password: <input type="password" id="password" name="password"><br><br>
+            <input type="submit" value="login"><br><br>
+            <a href="reset.html" target="_blank">Forgot Password</a>
+        </form>
+        <p id="err"></p>
+        <script>
+            function authenticate()
+            {
+                var email= document.getElementById("email").value;
+                var password= document.getElementById("password").value;
+                var result= checkCredentials(email,password);
+                return result;
+            }
+            function checkCredentials(email,password)
+            {
+              var entry= localStorage.getItem(email);
+              if(entry!=null)
+              {
+                 lc$data= JSON.parse(entry);
+                 if(lc$data.password===password)
+                 {
+                     return true;
+                 }
+                 else
+                 {
+                     document.getElementById("err").innerHTML="Inavalid Password";
+                     return false;
+                 }
+              }
+              else{
+                  document.getElementById("err").innerHTML="This email is not registered with us!";
+                  return false;
+              }
+            }
+        </script>
+    </body>
+</html>
