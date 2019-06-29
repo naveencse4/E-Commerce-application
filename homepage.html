@@ -23,7 +23,7 @@
           Password<span>*</span><br>
           <input type="password" id="password" name="password" required><br><br>
           Confirm Password<span>*</span><br>
-          <input type="password" id="confirm" name="confirm password" required><br><br>
+          <input type="password" id="confirm" onchange="match()" name="confirm password" required><label style="color:red;" id="msg"></label><br><br>
           Phone Number<span>*</span> <br>
           <input type="tel" id="phno" name="phno" required><br><br>  
           Date of Birth<span>*</span><br>
@@ -31,6 +31,16 @@
           <input type="submit" id="submit" onclick=storeuser() value="submit"><br><br>
           <p>Already registered ? <a href="signin.html" target="_blank">SignIn</a></p><br>
         </form>
+        <script>
+            function match(){
+                var x = document.getElementById("password").value;
+                var y = document.getElementById("confirm").value;
+                if(x!=y)
+                {
+                  document.getElementById("msg").innerHTML="password does not match!";
+                }
+            }
+        </script>
         <script>
             function storeuser()
             {
