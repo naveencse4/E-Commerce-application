@@ -12,13 +12,11 @@
     </head>
     <body>
         <h1 Style="text-align: center;background-color: rgb(140,240,0); color: rgb(255,0,0);">Online Bazaar</h1>
-        <form onsubmit="return authenticate()">
             Username: <input type="text" id="username" name="username"><br><br>
             Email: <input type="email" id="email" name="emailid"><br><br>
             Password: <input type="password" id="password" name="password"><br><br>
-            <input type="submit" value="login"><br><br>
+            <input type="submit" value="login" onclick="authenticate()"><br><br>
             <a href="reset.html" target="_blank">Forgot Password</a>
-        </form>
         <p id="err"></p>
         <script>
             function authenticate()
@@ -36,6 +34,7 @@
                  lc$data= JSON.parse(entry);
                  if(lc$data.password===password)
                  {
+                     window.location.replace("mainpage.html");
                      return true;
                  }
                  else
